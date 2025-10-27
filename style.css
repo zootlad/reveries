@@ -1,0 +1,547 @@
+/* Add smooth scrolling to the entire document */
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* ==========================================
+   TYPOGRAPHY & BASE STYLES
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a; /* Main dark background */
+    color: #d4d4d4; /* Light grey text */
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   NAVIGATION BAR
+   ========================================== */
+.navbar {
+    background-color: #0f0f0f;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #2e2e2e;
+    position: relative;
+}
+
+.nav-left {
+    display: flex;
+    gap: 0;
+    justify-content: space-evenly;
+    flex: 1;
+    margin-right: 120px; /* Space for center logo */
+}
+
+.nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    z-index: 1002;
+}
+
+.nav-logo {
+    width: 480px;
+    height: 80px;
+    background-color: #1a1a1a;
+    border-left: 2px solid #444;
+    border-right: 2px solid #444;
+    border-bottom: 2px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        92% 100%,
+        8% 100%
+    );
+    overflow: hidden;
+}
+
+.nav-logo img {
+    max-width: 120%;
+    max-height: 120%;
+    object-fit: contain;
+}
+
+.nav-right {
+    display: flex;
+    gap: 0;
+    justify-content: space-evenly;
+    flex: 1;
+    margin-left: 120px; /* Space for center logo */
+}
+
+.nav-link {
+    color: #d4d4d4;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    padding: 0.5rem 1rem;
+    z-index: 2;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #c9a85b; /* Subtle hover effect - change accent color here */
+}
+
+/* Mobile menu toggle (hidden by default) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #d4d4d4;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* ==========================================
+   MAP IMAGE SECTION
+   ========================================== */
+.banner {
+    width: 100%;
+    background-color: #252525;
+    border-bottom: 2px solid #2e2e2e;
+    position: relative;
+    display: block;
+}
+
+.banner-placeholder {
+    width: 100%;
+    display: block;
+}
+
+.banner-placeholder img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.banner-download-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(100, 100, 100, 0.3);
+    border-radius: 9999px; /* ⬅ full capsule shape */
+    padding: 0.9rem 2.8rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s ease, top 0.4s ease, bottom 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.banner-download-container,
+.server-ip-badge {
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(100, 100, 100, 0.3);
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.banner-download-container a.banner-download-btn {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background-color: #8b2e2e;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px; /* ⬅ Rounded edges to match server badge */
+    border: 1px solid #a03838;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.banner-download-container a.banner-download-btn:hover {
+    background-color: #a03838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+.banner-download-container a.banner-download-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+}
+
+.banner-download-btn {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background-color: #8b2e2e;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    border: 1px solid #a03838;
+}
+
+.banner-download-btn:hover {
+    background-color: #a03838;
+    transform: translateY(-2px);
+}
+
+.banner-download-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================
+   MAIN CONTENT SECTION
+   ========================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    padding-bottom: 6rem; /* Space for sticky footer */
+}
+
+.description {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.description h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #f0f0f0;
+    font-weight: 600;
+}
+
+.description p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #b8b8b8;
+    max-width: 900px;
+    margin: 0 auto 1rem auto;
+}
+
+/* ==========================================
+   DOWNLOAD BUTTON
+   ========================================== */
+.download-section {
+    text-align: center;
+    margin: 3rem 0 2rem 0;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background-color: #8b2e2e; /* Deep crimson accent - adjust as needed */
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    border: 1px solid #a03838;
+}
+
+.download-btn:hover {
+    background-color: #a03838;
+    transform: translateY(-2px);
+}
+
+.download-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================
+   SERVER IP SECTION (Below download, then sticky)
+   ========================================== */
+.server-ip-section {
+    text-align: center;
+    margin: 2rem 0 4rem 0;
+}
+
+.sticky-footer {
+    display: inline-block;
+    position: sticky;
+    top: auto;
+    bottom: 2rem;
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(100, 100, 100, 0.3);
+    border-radius: 50px;
+    padding: 0.9rem 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+}
+
+/* ==========================================
+   KEY MODS CARDS SECTION (MTG-style)
+   ========================================== */
+.cards-section {
+    margin-top: 3rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #f0f0f0;
+    font-weight: 600;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Individual card styling (MTG-inspired) */
+.mod-card {
+    background-color: #2e2e2e; /* Slightly lighter than background */
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4); /* Subtle inner shadow */
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.mod-card:hover {
+    border-color: #c9a85b; /* Accent border on hover */
+    transform: translateY(-4px);
+}
+
+/* Override for "Epic Fight" card to prevent zoom on hover */
+/* Add class="mod-card--epic-fight" to the specific card in your HTML */
+.mod-card.mod-card--epic-fight:hover {
+    transform: translateY(0);
+}
+
+.card-icon {
+    width: 100%;
+    height: 160px;
+    background-color: #1a1a1a;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-size: 0.9rem;
+    border: 1px solid #333;
+}
+.mod-card .card-icon {
+    width: 100%;       /* container width */
+    height: 200px;     /* set a fixed height or aspect ratio */
+    overflow: hidden;  /* hide anything that spills out */
+    border-radius: 8px; /* optional, for nice rounded corners */
+}
+
+.mod-card .card-icon img {
+    width: 100%;       /* fill container width */
+    height: 100%;      /* fill container height */
+    object-fit: cover; /* scale image to fill inside, cropping if necessary */
+    display: block;    /* remove bottom whitespace under image */
+}
+
+/* NOTE: Replace card-icon background with actual mod icon images:
+   background-image: url('mod-icon.png');
+   background-size: cover;
+   background-position: center;
+*/
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #f0f0f0;
+    margin-bottom: 0.75rem;
+    text-align: center;
+    border-bottom: 2px solid #444;
+    padding-bottom: 0.5rem;
+}
+
+.card-description {
+    font-size: 0.95rem;
+    color: #b0b0b0;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* ==========================================
+   STICKY BOTTOM BADGE (Server IP - Glassmorphism)
+   ========================================== */
+.server-ip {
+    font-size: 1rem;
+    color: #e8e8e8;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.server-ip span {
+    color: #c9a85b; /* Accent color for IP */
+    font-weight: 600;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN (Mobile)
+   ========================================== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .nav-center {
+        position: static;
+        transform: none;
+        width: 100%;
+        order: -1;
+        margin-bottom: 1rem;
+    }
+
+    .nav-logo {
+        width: 100%;
+        max-width: 300px;
+        height: 60px;
+        margin: 0 auto;
+        clip-path: polygon(
+            0 0,
+            100% 0,
+            95% 100%,
+            5% 100%
+        );
+    }
+
+    .nav-left,
+    .nav-right {
+        width: 100%;
+        justify-content: center;
+        gap: 1rem;
+        margin: 0;
+    }
+
+    .nav-left {
+        display: none; /* Hide by default on mobile */
+    }
+
+    .nav-right {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
+
+    .nav-left.active,
+    .nav-right.active {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding-top: 1rem;
+    }
+
+    .banner {
+        min-height: 200px;
+    }
+
+    .banner-download-container {
+        padding: 1rem 2rem;
+    }
+
+    .description h1 {
+        font-size: 1.5rem;
+    }
+
+    .description p {
+        font-size: 0.95rem;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 2rem 1rem;
+    }
+}
+
+/* ======================================================
+BANNER ANIMATION
+====================================================== */
+.banner {
+    position: relative;
+    overflow: visible;
+}
+
+.server-ip-badge {
+    position: absolute;
+    left: 50%;
+    bottom: -1.5rem; /* "peeking" below image */
+    transform: translateX(-50%);
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(100, 100, 100, 0.3);
+    border-radius: 50px;
+    padding: 0.9rem 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    z-index: 20;
+    transition: all 0.4s ease;
+}
+
+.banner-download-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(30, 30, 30, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(100, 100, 100, 0.3);
+    padding: 1.5rem 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+}
+
+/* When scrolled past the banner */
+.banner.scrolled .banner-download-container {
+    top: auto;
+    bottom: 1.5rem;
+    transform: translate(-50%, 0);
+    padding: 1rem 2.5rem; /* keep padding consistent */
+}
+
+.banner.scrolled .server-ip-badge {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+}

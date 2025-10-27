@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NightfallCraft: The Casket of Reveries</title>
+    <style>
+        @import url("style.css");
+    </style>
+</head>
+<body>
+    <!-- ==========================================
+         NAVIGATION BAR
+         ========================================== -->
+    <nav class="navbar">
+        <!-- Mobile menu toggle button -->
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        
+        <!-- Left navigation items -->
+        <div class="nav-left" id="navLeft">
+            <a href="#changelog" class="nav-link">Changelog</a>
+            <a href="#about" class="nav-link">About</a>
+        </div>
+
+        <!-- Center logo image (hangs over navbar) -->
+        <div class="nav-center">
+            <div class="nav-logo">
+                <img src="assets/logo.png" alt="Pack Logo">
+            </div>
+        </div>
+
+        <!-- Right navigation items -->
+        <div class="nav-right" id="navRight">
+            <a href="#message" class="nav-link">Message</a>
+            <a href="#download" class="nav-link">Download</a>
+        </div>
+    </nav>
+
+<!-- ==========================================
+     BANNER PLACEHOLDER (Map Image with Download + Server IP)
+     ========================================== -->
+     <div class="banner" id="banner">
+        <div class="banner-placeholder">
+            <img src="assets/map.png" alt="Map banner">
+        </div>
+    
+        <!-- Download button -->
+        <div class="banner-download-container" id="bannerDownload">
+            <a href="#" class="banner-download-btn">Download Modpack</a>
+        </div>
+    
+        <!-- Server IP badge -->
+        <div class="server-ip-badge" id="serverIP">
+            <span class="server-ip">Server IP: <span>mc.reveries.lol</span></span>
+        </div>
+    </div>
+    
+
+    <!-- ==========================================
+         MAIN CONTENT
+         ========================================== -->
+    <div class="container">
+        <!-- Description Section -->
+        <section class="description">
+            <h1>NightfallCraft: The Casket of Reveries</h1>
+            <p>
+                Embark on an epic journey through a soulslike RPG modpack designed for Minecraft 1.20.1. 
+                The Casket of Reveries shoves you into a realm of challenging combat, mysterious lore, 
+                and quest-driven progression. Face formidable bosses, uncover ancient secrets, and master custom 
+                content crafted to deliver a hardcore adventure experience.
+            </p>
+        </section>
+
+        <!-- Download Button -->
+        <section class="download-section" id="download">
+            <a href="#" class="download-btn">Download Modpack</a>
+        </section>
+
+        <!-- Key Mods Cards Section -->
+        <section class="cards-section">
+            <h2 class="section-title">Featuring...</h2>
+            <div class="cards-grid">
+                <!-- Card 1 -->
+                <div class="mod-card mod-card--epic-fight">
+                    <div class="card-icon">
+                        <img src="assets/epicfight.png" alt="Epic Fight icon">
+                    </div>
+                    <h3 class="card-title">Epic Fight</h3>
+                    <p class="card-description">
+                        Epic Fight like you've never seen it before: hand-tailored for the Casket of Reveries.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="mod-card">
+                    <div class="card-icon">
+                        <img src="assets/ftb.png" alt="Feed The Beast icon">
+                    </div>
+                    <h3 class="card-title">Feed The Beast</h3>
+                    <p class="card-description">
+                        Every FTB creature comfort you could ask for. /back, /tpa, questing, teams, and more.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="mod-card">
+                    <div class="card-icon">
+                        <img src="assets/world.png" alt="Screenshot of worldgen">
+                    </div>
+                    <h3 class="card-title">Fully Customized World</h3>
+                    <p class="card-description">
+                        World generation handcrafted to fit the Casket of Reveries. Custom biomes, dungeons, and more.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT (Mobile Menu Toggle)
+         ========================================== -->
+    <script>
+        function toggleMenu() {
+            const navLeft = document.getElementById('navLeft');
+            const navRight = document.getElementById('navRight');
+            navLeft.classList.toggle('active');
+            navRight.classList.toggle('active');
+        }
+    </script>
+    <!-- 
+    ==========================================
+    CUSTOMIZATION NOTES:
+    ==========================================
+    
+    COLORS TO ADJUST:
+    - Main accent color: #c9a85b (golden/brass tone)
+      - Found in: .nav-link:hover, .mod-card:hover border, .server-ip span
+      - Alternative suggestions: #2d7a7a (teal), #8b2e2e (deep crimson)
+    
+    - Download button: #8b2e2e (deep crimson)
+      - Change both background-color and border color
+    
+    - Background colors:
+      - #1a1a1a (main background)
+      - #0f0f0f (navbar)
+      - #2e2e2e (cards)
+    
+    IMAGES:
+    - Logo image: assets/logo.png (constrained to 90% of trapezoid box)
+    - Map image: assets/map.png (adjusts banner height automatically)
+    
+    TYPOGRAPHY:
+    - Main font: 'Segoe UI' (change in body font-family)
+    - Consider alternatives: 'Inter', 'Roboto', 'Open Sans'
+    
+    CONTENT TO UPDATE:
+    - Navigation links: Update href attributes to actual pages/sections
+    - Download button: Update href to actual download link
+    -->
+    <script>
+        const banner = document.getElementById('banner');
+        const bannerHeight = banner.offsetHeight;
+    
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > bannerHeight * 0.3) {
+                banner.classList.add('scrolled');
+            } else {
+                banner.classList.remove('scrolled');
+            }
+        }); 
+    </script>    
+</body>
+</html>
