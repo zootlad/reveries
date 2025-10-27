@@ -335,11 +335,13 @@ body {
     transform: translateY(-4px);
 }
 
-/* Override for "Epic Fight" card to prevent zoom on hover */
-/* Add class="mod-card--epic-fight" to the specific card in your HTML */
+/* The following override was preventing the "Epic Fight" card from zooming on hover.
+   Removing it allows the general .mod-card:hover rule to apply. */
+/*
 .mod-card.mod-card--epic-fight:hover {
     transform: translateY(0);
 }
+*/
 
 .card-icon {
     width: 100%;
